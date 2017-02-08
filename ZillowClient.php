@@ -6,13 +6,13 @@
  */
 
 class ZillowClient {
-    private $zws_id = '';
-    private $endpoint = 'https://www.zillow.com/webservice';
+    private $data = array(
+        'zws_id' => '',
+        'endpoint' => 'https://www.zillow.com/webservice',
+    );
 
     public function __construct($zws_id = '') {
-        if (!empty($zws_id)) {
-            $this->zws_id = $zws_id;
-        }
+        $this->set('zws_id', $zws_id);
     }
 
     private function xmlToArray($xmlObject, $out = array()) {
@@ -23,36 +23,51 @@ class ZillowClient {
     }
 
     private function call($method = '', $params = array()) {
-        $url = $this->endpoint . '/' . $method . '.htm?' . http_build_query($params);
+        $url = $this->get('endpoint') . '/' . $method . '.htm?' . http_build_query($params);
         $result = new SimpleXMLElement($url, 0, true);
         $result = $this->xmlToArray($result);
         return $result;
     }
 
+    public function set($property = '', $value = '') {
+        $this->data[$property] = $value;
+        return $this;
+    }
+
+    public function get($property = '', $default_value = '') {
+        return isset($this->data[$property]) ? $this->data[$property] : $default_value;
+    }
+
     public function getSearchResults($params = array()) {
-        if (empty($this->zws_id)) {
-            throw new Exception('ZWS_id is required.');
+        $zws_id = $this->get('zws_id');
+        if (empty($zws_id)) {
+            return array(
+                'message' => array(
+                    'text' => 'Error: invalid or missing ZWSID parameter',
+                    'code' => 2,
+                )
+            );
         }
 
-        $myParams = array();
-        $myParams['zws-id'] = $this->zws_id;
-        $myParams['address'] = $params['address'];
+        $request = array();
+        $request['zws-id'] = $zws_id;
+        $request['address'] = $params['address'];
         if (isset($params['citystatezip'])) {
-            $myParams['citystatezip'] = $params['citystatezip'];
+            $request['citystatezip'] = $params['citystatezip'];
         }
         else {
-            $myParams['citystatezip'] = array();
+            $request['citystatezip'] = array();
             if (isset($params['city'])) {
-                $myParams['citystatezip'][] = $params['city'];
+                $request['citystatezip'][] = $params['city'];
             }
             if (isset($params['state'])) {
-                $myParams['citystatezip'][] = $params['state'];
+                $request['citystatezip'][] = $params['state'];
             }
             if (isset($params['zip'])) {
-                $myParams['citystatezip'][] = $params['zip'];
+                $request['citystatezip'][] = $params['zip'];
             }
-            $myParams['citystatezip'] = implode(' ', $myParams['citystatezip']);
+            $request['citystatezip'] = implode(' ', $request['citystatezip']);
         }
-        return $this->call('GetSearchResults', $myParams);
+        return $this->call('GetSearchResults', $request);
     }
 }
