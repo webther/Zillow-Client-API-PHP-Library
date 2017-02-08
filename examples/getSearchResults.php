@@ -1,18 +1,33 @@
 <?php
-require_once '../ZillowClient.php';
-$zillow = new ZillowClient('');
+
+/**
+ * See http://www.zillow.com/howto/api/GetSearchResults.htm.
+ */
+
+use Webther\Zillow;
+require_once '../autoloader.php';
+
+$zillow = new Webther\Zillow\ZillowClient('X1-ZWz19dnmfur9xn_a3t9y');
 
 $params = array(
     'address' => '1838 E 23rd St',
     'city' => 'Brooklyn',
     'state' => 'NY',
     'zip' => '11229',
+    'rentzestimate' => FALSE,
 );
-$results = $zillow->getSearchResults($params);
+$response = $zillow->call('GetSearchResults', $params);
 
-//echo '<pre>';
-//print_r($results);
-//echo '</pre>';
+$params = array(
+    'address' => '1838 E 23rd St',
+    'citystatezip' => 'Brooklyn NY 11229',
+    'rentzestimate' => FALSE,
+);
+$response = $zillow->call('GetSearchResults', $params);
+
+print_r($response->fetch());
+//print_r($response->fetch('response|results|result'));
+
 ?>
 
 <pre>
@@ -109,5 +124,6 @@ Array
 
 )
 </pre>
+
 
 
