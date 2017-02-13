@@ -4,7 +4,7 @@ Zillow Client API PHP Library
 How to use?
 --------------------------------------------------------------------------
 
-### GetSearchResults
+#### GetSearchResults
 ```
 use Webther\Zillow;
 require_once '../autoloader.php';
@@ -27,9 +27,8 @@ $params = array(
 $response = $zillow->call('GetSearchResults', $params);
 ```
 
+#### GetZestimate
 ```
-### GetZestimate
-
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
@@ -41,9 +40,8 @@ $params = array(
 $response = $zillow->call('GetZestimate', $params);
 ```
 
+#### GetChart
 ```
-### GetChart
-
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
@@ -58,9 +56,8 @@ $params = array(
 $response = $zillow->call('GetChart', $params);
 ```
 
+#### GetComps
 ```
-### GetComps
-
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
