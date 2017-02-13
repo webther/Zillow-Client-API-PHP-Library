@@ -6,8 +6,7 @@
 
 use Webther\Zillow;
 require_once '../autoloader.php';
-
-$zillow = new Webther\Zillow\ZillowClient('X1-ZWz19dnmfur9xn_a3t9y');
+$zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
 
 $params = array(
     'address' => '1838 E 23rd St',
