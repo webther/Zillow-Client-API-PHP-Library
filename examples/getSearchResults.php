@@ -31,7 +31,13 @@ print_r($response->fetch());
 // Only fetch the message code.
 echo $response->fetch('message|code');
 // Only fetch the searched results.
-print_r($response->fetch('response|results|result'));
+foreach ($response->fetch('response|results') as $result) {
+    $result = new Zillow\ZillowResponse($result);
+    print_r($result->fetch());
+    echo $result->fetch('zpid');
+    echo $result->fetch('address|zipcode');
+    echo $result->fetch('zestimate|amount');
+}
 
 ?>
 

@@ -52,6 +52,7 @@ class ZillowClient {
 
         switch ($method) {
             case 'GetSearchResults':
+            case 'GetDeepSearchResults':
                 if (!isset($params['citystatezip'])) {
                     $params['citystatezip'] = array();
                     if (isset($params['city'])) {
