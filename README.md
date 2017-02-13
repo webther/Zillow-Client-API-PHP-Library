@@ -5,6 +5,8 @@ How to use?
 --------------------------------------------------------------------------
 
 ```
+### GetSearchResults
+
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
@@ -27,6 +29,8 @@ $response = $zillow->call('GetSearchResults', $params);
 ```
 
 ```
+### GetZestimate
+
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
@@ -39,6 +43,8 @@ $response = $zillow->call('GetZestimate', $params);
 ```
 
 ```
+### GetChart
+
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
@@ -54,6 +60,8 @@ $response = $zillow->call('GetChart', $params);
 ```
 
 ```
+### GetComps
+
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
