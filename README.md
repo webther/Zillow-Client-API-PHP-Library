@@ -1,7 +1,21 @@
 # Zillow Client API PHP Library
 
+This PHP Library includes the following Zillow API functions:
+
+* GetSearchResults
+* GetZestimate
+* GetChart
+* GetComps
+
+Requirements
+-------------------------------------------------------------------------------
+PHP >= 5.3
+
+You need to create a free Zillow account and get a Zillow Web Services ID to
+use this library. See [http://www.zillow.com/howto/api/APIOverview.htm](http://www.zillow.com/howto/api/APIOverview.htm).
+
 How to use?
---------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 #### GetSearchResults
 ```
