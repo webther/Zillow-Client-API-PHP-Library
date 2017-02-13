@@ -9,7 +9,7 @@ This PHP Library includes the following Zillow API functions:
 
 Requirements
 -------------------------------------------------------------------------------
-PHP >= 5.3
+PHP >= 5.3.0
 
 You need to create a free Zillow account and get a Zillow Web Services ID to
 use this library. See http://www.zillow.com/howto/api/APIOverview.htm.
