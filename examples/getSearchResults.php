@@ -10,6 +10,7 @@ $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
 
 $params = array(
     'address' => '1838 E 23rd St',
+    // You can separate the city, state and zip.
     'city' => 'Brooklyn',
     'state' => 'NY',
     'zip' => '11229',
@@ -19,13 +20,18 @@ $response = $zillow->call('GetSearchResults', $params);
 
 $params = array(
     'address' => '1838 E 23rd St',
+    // You can combine the city, state and zip.
     'citystatezip' => 'Brooklyn NY 11229',
     'rentzestimate' => FALSE,
 );
 $response = $zillow->call('GetSearchResults', $params);
 
+// Fetch the entire response array.
 print_r($response->fetch());
-//print_r($response->fetch('response|results|result'));
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the searched results.
+print_r($response->fetch('response|results|result'));
 
 ?>
 

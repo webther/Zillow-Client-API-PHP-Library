@@ -11,6 +11,7 @@ $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
 
 $params = array(
     'address' => '1838 E 23rd St',
+    // You can separate the city, state and zip.
     'city' => 'Brooklyn',
     'state' => 'NY',
     'zip' => '11229',
@@ -20,10 +21,18 @@ $response = $zillow->call('GetSearchResults', $params);
 
 $params = array(
     'address' => '1838 E 23rd St',
+    // You can combine the city, state and zip.
     'citystatezip' => 'Brooklyn NY 11229',
     'rentzestimate' => FALSE,
 );
 $response = $zillow->call('GetSearchResults', $params);
+
+// Fetch the entire response array.
+print_r($response->fetch());
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the searched results.
+print_r($response->fetch('response|results|result'));
 ```
 
 #### GetZestimate
@@ -37,6 +46,13 @@ $params = array(
     'rentzestimate' => FALSE,
 );
 $response = $zillow->call('GetZestimate', $params);
+
+// Fetch the entire response array.
+print_r($response->fetch());
+// Only fetch the zestimate amount.
+echo $response->fetch('response|zestimate|amount');
+// Only fetch the property's address.
+print_r($response->fetch('response|address'));
 ```
 
 #### GetChart
@@ -53,6 +69,13 @@ $params = array(
     'chartDuration' => '1year',
 );
 $response = $zillow->call('GetChart', $params);
+
+// Fetch the entire response array.
+print_r($response->fetch());
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the chart's url.
+echo $response->fetch('response|url');
 ```
 
 #### GetComps
@@ -67,4 +90,11 @@ $params = array(
     'rentzestimate' => FALSE,
 );
 $response = $zillow->call('GetComps', $params);
+
+// Fetch the entire response array.
+print_r($response->fetch());
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the principal and comparable properties.
+print_r($response->fetch('response|properties'));
 ```

@@ -15,8 +15,12 @@ $params = array(
 );
 $response = $zillow->call('GetComps', $params);
 
+// Fetch the entire response array.
 print_r($response->fetch());
-//echo $response->fetch('response');
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the principal and comparable properties.
+print_r($response->fetch('response|properties'));
 
 ?>
 

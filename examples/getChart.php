@@ -17,8 +17,12 @@ $params = array(
 );
 $response = $zillow->call('GetChart', $params);
 
+// Fetch the entire response array.
 print_r($response->fetch());
-//echo $response->fetch('response|url');
+// Only fetch the message code.
+echo $response->fetch('message|code');
+// Only fetch the chart's url.
+echo $response->fetch('response|url');
 
 ?>
 

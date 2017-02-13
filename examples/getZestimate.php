@@ -14,9 +14,12 @@ $params = array(
 );
 $response = $zillow->call('GetZestimate', $params);
 
+// Fetch the entire response array.
 print_r($response->fetch());
-//echo $response->fetch('response|zestimate|amount');
-//print_r($response->fetch('response|address'));
+// Only fetch the zestimate amount.
+echo $response->fetch('response|zestimate|amount');
+// Only fetch the property's address.
+print_r($response->fetch('response|address'));
 
 ?>
 
