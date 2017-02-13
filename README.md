@@ -4,9 +4,8 @@ Zillow Client API PHP Library
 How to use?
 --------------------------------------------------------------------------
 
-```
 ### GetSearchResults
-
+```
 use Webther\Zillow;
 require_once '../autoloader.php';
 $zillow = new Webther\Zillow\ZillowClient(ZILLOW_ZWSID);
